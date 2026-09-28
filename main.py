@@ -2,6 +2,8 @@ from models.books import Book
 from contextlib import asynccontextmanager
 from database import engine, Model
 from fastapi import FastAPI
+from routers.books import router as books_router
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -13,4 +15,4 @@ async def lifespan(app: FastAPI):
     print("Выключение сервера")
 
 app = FastAPI(lifespan=lifespan)
-#app.include_router(tasks_router)
+app.include_router(books_router)
